@@ -25,3 +25,4 @@ Snake-Vivorita es un juego de Snake clásico con algunos toques interesantes.
 5. Definición de una puntuación límite para ganar
 6. Desarrollo de mapas con obstáculos para una mayor dificultad
 7. Implementación de comida mortal (bombas) para aumentar la tensión.
+8. hacer controles en pantalla para jugar en celular/tablet
