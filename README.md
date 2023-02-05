@@ -16,7 +16,7 @@ Snake-Vivorita es un juego de Snake clásico con algunos toques interesantes.
 1. Descargar el repositorio
 2. Abrir el archivo `index.html` en tu navegador preferido
 
-## TODO List
+## TO DO List
 
 1. Implementación de puntuación
 2. Desarrollo de distintos modos de juego
