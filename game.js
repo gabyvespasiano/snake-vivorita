@@ -1,8 +1,10 @@
 const board = document.getElementById("game-board");
 const snake = [];
 //Define el tamaño del tablero
-let boardHeight = 302;
+let boardHeight = 602;
 let boardWidth = boardHeight;
+let puntaje = document.getElementById("puntaje");
+let speed =200;
 //aqui editar css con el tamaño del tablero del js
 
 // Crea 5 elementos "div" y los agrega a un array llamado "snake"
@@ -14,8 +16,50 @@ for (let i = 0; i < 5; i++) {
   snake[i].style.left = (i * 10) + "px";
   board.appendChild(snake[i]);
 }
+function generarColorAleatorio() {
+  var r = Math.floor(Math.random() * 128) + 128;
+  var g = Math.floor(Math.random() * 128) + 128;
+  var b = Math.floor(Math.random() * 128);
+  return "rgba(" + r + ", " + g + ", " + b + ", 0.8)";
+}
 
+
+function check(variable){
+
+}
 // Establece la dirección inicial del juego hacia la derecha
+function head(position){
+    switch (position) {
+      case "up":
+        snake[0].classList.toggle("top-left", true);
+        snake[0].classList.toggle("top-right", true);
+        snake[0].classList.toggle("bottom-left", false);
+        snake[0].classList.toggle("bottom-right", false);
+        break;
+      case "right":
+        snake[0].classList.toggle("top-left", false);
+        snake[0].classList.toggle("top-right", true);
+        snake[0].classList.toggle("bottom-left", false);
+        snake[0].classList.toggle("bottom-right", true);
+        break;
+      case "down":
+        snake[0].classList.toggle("top-left", false);
+        snake[0].classList.toggle("top-right", false);
+        snake[0].classList.toggle("bottom-left", true);
+        snake[0].classList.toggle("bottom-right", true);
+        break;
+      case "left":
+        snake[0].classList.toggle("top-left", true);
+        snake[0].classList.toggle("top-right", false);
+        snake[0].classList.toggle("bottom-left", true);
+        snake[0].classList.toggle("bottom-right", false);
+        break;
+    
+  }
+  // if (){//snake.classList.contains('up')
+  //     snake.classList.remove('up');
+  //   }
+}
 let direction = "right";
 
 // Detecta el evento de presionar una tecla y cambia la dirección según la tecla presionada
@@ -44,9 +88,11 @@ let food = null;
 function createFood() {
   food = document.createElement("div");
   food.classList.add("food-unit");
+  food.innerText = "🍎";
   food.style.left = (Math.floor(Math.random() * 30) * 10) + "px";
   food.style.top = (Math.floor(Math.random() * 30) * 10) + "px";
   board.appendChild(food);
+
 }
 
 // Llamar la función createFood() para crear la primera comida en el juego
@@ -91,9 +137,14 @@ let moveLeft = () => {
     }
     snake[0].style.top = headTop + "px";
   };
+    //agrega una clase a la cabeza
+    snake[0].classList.add("head")
   
 //Establece un intervalo de tiempo para la ejecución de la función
-setInterval(function() {
+let intervalo = setInterval(function() {
+  main();
+}, speed);
+function main(){
   
   //Ciclo for para actualizar la posición de cada unidad de la serpiente
   for (let i = snake.length - 1; i > 0; i--) {
@@ -116,10 +167,23 @@ setInterval(function() {
         moveDown();
       break;
   }
-  
+  head(direction);
   //Condicional para detectar si la serpiente come la comida
   if (Math.abs(snake[0].offsetLeft - food.offsetLeft) <10 && 
       Math.abs(snake[0].offsetTop - food.offsetTop) < 10) {
+    //suma puntaje si agarra comida
+    puntaje.innerText = 10 + parseInt(puntaje.innerText);
+    //puntaje.classList.toggle("animar", true);
+    clearInterval(intervalo);
+    if (speed > 50){
+    speed = speed-10;
+
+   }
+   intervalo = setInterval(function() {
+    main();
+  }, speed);
+    puntaje.animate([{opacity: 0},{opacity: 1}],{ duration: 500});
+    puntaje.style.color = generarColorAleatorio();
     //Agrega una nueva unidad a la serpiente
     snake.push(document.createElement("div"));
     snake[snake.length - 1].classList.add("snake-unit");
@@ -130,4 +194,4 @@ setInterval(function() {
     board.removeChild(food);
     createFood();
   }
-}, 100);
+}
