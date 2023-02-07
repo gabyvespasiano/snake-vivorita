@@ -145,7 +145,7 @@ let intervalo = setInterval(function() {
   main();
 }, speed);
 function main(){
-  
+
   //Ciclo for para actualizar la posición de cada unidad de la serpiente
   for (let i = snake.length - 1; i > 0; i--) {
     snake[i].style.left = snake[i - 1].style.left;
@@ -168,6 +168,17 @@ function main(){
       break;
   }
   head(direction);
+  if (parseInt(puntaje.innerText)>0){
+    for (let i = 2; i < snake.length; i++) {
+      if (snake[0].style.top == snake[i].style.top && snake[0].style.left == snake[i].style.left) {
+        //clearInterval(gameLoop);
+        alert("Game Over");
+        //console.log("asd")
+        location.reload();
+        break;
+      }
+    }
+  }
   //Condicional para detectar si la serpiente come la comida
   if (Math.abs(snake[0].offsetLeft - food.offsetLeft) <10 && 
       Math.abs(snake[0].offsetTop - food.offsetTop) < 10) {
