@@ -4,6 +4,9 @@
 
 Snake-Vivorita es un juego de Snake clásico con algunos toques interesantes. 
 
+## Probar el juego: https://gabyvespasiano.github.io/snake-vivorita/
+
+
 ## Características
 
 - Puntuación
