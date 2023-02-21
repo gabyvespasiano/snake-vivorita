@@ -206,3 +206,24 @@ function main(){
     createFood();
   }
 }
+
+// Obtener el ancho de la pantalla
+let screenWidth = screen.width;
+let screenHeight = screen.height;
+
+// Calcular el valor de escala para que el ancho de la página coincida con el ancho de la pantalla
+let scale = screenWidth / boardWidth;
+//var scale = 360 / boardWidth;
+
+if (scale<1){
+// Aplicar el valor de escala a la página
+document.body.style.transform = "scale(" + scale + ")";
+document.body.style.transformOrigin = "left top";
+document.body.style.width = boardWidth + 'px';
+document.body.style.height = screenHeight * scale + screenHeight + 'px';
+let el = document.querySelector('.section');
+el.style.width = boardWidth + 'px';
+// el.style.height = (screen.height* (screen.height / document.body.scrollHeight)+1  + 'px');
+//  el = document.querySelector('.botones button');
+//  el.style.width = (screenWidth * scale) + screenWidth + "px" ;
+}

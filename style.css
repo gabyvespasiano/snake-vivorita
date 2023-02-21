@@ -1,3 +1,18 @@
+body{
+  margin: 0;
+  /* width: 100vw; */
+}
+/* .section{
+
+} */
+.botones{
+  /* display: grid;
+  grid-template-rows:  4px; */
+}
+.botones button{
+  width: 50vw;
+  height: 25vw;
+}
 #puntaje{
   font-size: 20em;
   font-family: 'Itim', cursive;
